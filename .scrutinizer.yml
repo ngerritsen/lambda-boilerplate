@@ -1,0 +1,13 @@
+build:
+  environment:
+    node: 'v8.11.3'
+  tests:
+    override:
+      - 'npm run lint'
+      - 'npm run test'
+  cache:
+    directories:
+      - node_modules
+
+build_failure_conditions:
+  - 'issues.exists'
