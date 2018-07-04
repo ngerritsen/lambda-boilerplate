@@ -1,3 +1,5 @@
+'use strict';
+
 const createHandler = require('../handler');
 const { createResponse, createErrorResponse } = require('../response');
 

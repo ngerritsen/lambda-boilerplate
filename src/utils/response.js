@@ -9,7 +9,7 @@ function createResponse(statusCode, body) {
   return {
     statusCode,
     body: JSON.stringify(body)
-  }
+  };
 }
 
 /**

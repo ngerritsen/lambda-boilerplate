@@ -1,3 +1,5 @@
+'use strict';
+
 const { createErrorResponse } = require('./response');
 
 /**
@@ -11,7 +13,7 @@ function createHandler(handler) {
     } catch (error) {
       callback(null, createErrorResponse(error));
     }
-  }
+  };
 }
 
 module.exports = createHandler;

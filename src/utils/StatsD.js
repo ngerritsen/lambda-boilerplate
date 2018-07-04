@@ -9,6 +9,7 @@ class StatsD {
   constructor(baseTags = []) {
     this._baseTags = baseTags;
   }
+
   /**
    * @param {Date}      dateObject
    * @param {string}    metricName

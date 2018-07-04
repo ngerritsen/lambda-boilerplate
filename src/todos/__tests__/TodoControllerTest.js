@@ -6,12 +6,13 @@ const { createResponse } = require('../../utils/response');
 
 jest.mock('../TodoService');
 
-let todoController, todoServiceMock;
+let todoController; let
+  todoServiceMock;
 
 beforeEach(() => {
   todoServiceMock = new TodoService();
   todoController = new TodoController(todoServiceMock);
-})
+});
 
 describe('getAll()', () => {
   test('Returns the todo\'s.', async () => {

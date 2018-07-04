@@ -24,4 +24,10 @@ Run tests:
 npm test
 ```
 
+Run linting: 
+
+```
+npm run lint
+```
+
 Tests are ran with Jest ([http://jestjs.io/docs/en/getting-started](http://jestjs.io/docs/en/getting-started)); Test files are located next to the code they test in a `__tests__` folder. This is common convention for Javascript tests.

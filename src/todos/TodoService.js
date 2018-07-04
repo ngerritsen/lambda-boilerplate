@@ -1,7 +1,5 @@
 'use strict';
 
-const { createResponse } = require('../utils/response');
-
 /**
  * @typedef {Object} Todo
  */
