@@ -21,10 +21,12 @@ Object.keys(handlers).forEach((handlerKey) => {
 
 function proxyHandler(handlerKey) {
   return (req, res) => {
-    handlers[handlerKey](req.body, {}, (error, response) => {
+    const body = typeof req.body === 'object' ? req.body : {};
+    const { event = {}, context = {} } = body;
+
+    handlers[handlerKey](event, context, (error, response) => {
       if (error) {
         res.status(500).send(error).end();
-
         return;
       }
 

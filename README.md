@@ -10,6 +10,25 @@ Install dependencies:
 npm install
 ```
 
+### Run the Lambda locally:
+
+```
+npm run serve
+```
+
+When using the serve command it will expose all handlers with their name as the url path on any method. So a when having a handler `getTodos` you will be able to do GET, POST, DELETE etc. on `/getTodos`. The request body (if provided) needs to follow this pattern:
+
+```js
+{
+  event: [Object],
+  context: [Object]
+}
+```
+
+Default the values will be an empty object.
+
+> This functionality is only for local testing, on production AWS Lamda will call the handlers.
+
 ## Application structure
 
 The application starts in the `index.js`. This is the file that exports the handlers to AWS Lambda. A handler is created with the `createHandler` utility. Then by adding the handler to the `module.exports` object it is made available to AWS Lambda. Note that the handler needs to return a response object or a Promise resolving with a Promise object. Uncatched are handled by returning a 500 with the error.
@@ -24,7 +43,7 @@ Run tests:
 npm test
 ```
 
-Run linting: 
+Run linting:
 
 ```
 npm run lint
