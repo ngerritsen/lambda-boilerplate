@@ -18,13 +18,13 @@ class TodoService {
    * @returns {Promise.<Todo[]>}
    */
   async getAll() {
-    const todos = await this._axios.get(this._apiBaseUrl + '/todos');
+    const result = await this._axios.get(this._apiBaseUrl + '/todos');
 
-    if (!todos) {
+    if (!result) {
       return [];
     }
 
-    return todos;
+    return result.data;
   }
 }
 
