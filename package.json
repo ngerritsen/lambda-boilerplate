@@ -4,7 +4,7 @@
   "description": "Lambda boilerplate",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

@@ -2,19 +2,25 @@
 
 const { createResponse } = require('../utils/response');
 
+/**
+ * @typedef {Object} Todo
+ */
+
 class TodoService {
   /**
-   * @param {Axios} axios
+   * @param {Axios}   axios
+   * @param {string}  apiBaseUrl
    */
-  constructor(axios) {
+  constructor(axios, apiBaseUrl) {
     this._axios = axios;
+    this._apiBaseUrl = apiBaseUrl;
   }
 
   /**
-   * @returns {Promise.<Todo>}
+   * @returns {Promise.<Todo[]>}
    */
   async getAll() {
-    const todos = await axios.get('https://jsonplaceholder.typicode.com/todos');
+    const todos = await this._axios.get(this._apiBaseUrl + '/todos');
 
     if (!todos) {
       return [];

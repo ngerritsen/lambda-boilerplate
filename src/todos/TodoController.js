@@ -11,7 +11,7 @@ class TodoController {
   }
 
   /**
-   * @returns {Promise.<Todo>}
+   * @returns {Promise.<Todo[]>}
    */
   async getAll() {
     const todos = await this._todoService.getAll();

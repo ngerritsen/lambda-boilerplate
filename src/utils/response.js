@@ -22,7 +22,7 @@ function createErrorResponse(error) {
   });
 }
 
-module.export = {
+module.exports = {
   createResponse,
   createErrorResponse
 };
