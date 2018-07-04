@@ -20,11 +20,29 @@ class TodoService {
   async getAll() {
     const result = await this._axios.get(this._apiBaseUrl + '/todos');
 
-    if (!result) {
+    if (!result || !result.data) {
       return [];
     }
 
     return result.data;
+  }
+
+  /**
+   * @param {string}  id
+   * @returns {Promise.<Todo[]>}
+   */
+  async get(id) {
+    try {
+      const result = await this._axios.get(this._apiBaseUrl + '/todos/' + id);
+
+      return result.data;
+    } catch (error) {
+      if (error.response.status === 404) {
+        return null;
+      }
+
+      throw error;
+    }
   }
 }
 

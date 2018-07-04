@@ -25,3 +25,23 @@ describe('getAll()', () => {
     expect(result).toEqual(createResponse(200, testTodos));
   });
 });
+
+describe('get()', () => {
+  test('Returns the todo.', async () => {
+    const testTodo = { name: 'test' };
+
+    todoServiceMock.get.mockResolvedValue(testTodo);
+
+    const result = await todoController.get({ id: 1 });
+
+    expect(result).toEqual(createResponse(200, testTodo));
+  });
+
+  test('Returns a 404 when no todo was returned..', async () => {
+    todoServiceMock.get.mockResolvedValue(null);
+
+    const result = await todoController.get({ id: 1 });
+
+    expect(result).toEqual(createResponse(404, { 'message': 'Todo with id "1" not found.' }));
+  });
+});
