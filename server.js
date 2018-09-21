@@ -10,22 +10,22 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   console.log(req.method, req.url);
   next();
 });
 
 app.post('/', (req, res) => {
-  const body = req.body;
+  const { body } = req;
 
   if (typeof body !== 'object') {
-    res.status(400).send('Please provide a valid json body.'); 
+    res.status(400).send('Please provide a valid json body.');
   }
 
   const { handler = '', event = {}, context = {} } = body;
 
   if (typeof handlers[handler] !== 'function') {
-    res.status(404).send(`Provided handler "${handler}" not found.`); 
+    res.status(404).send(`Provided handler "${handler}" not found.`);
   }
 
   handlers[handler](event, context, (error, response) => {

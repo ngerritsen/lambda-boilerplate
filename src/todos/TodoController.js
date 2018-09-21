@@ -28,7 +28,7 @@ class TodoController {
     const todo = await this._todoService.get(id);
 
     if (!todo) {
-      return createResponse(404, { 'message': `Todo with id "${id}" not found.` });
+      return createResponse(404, { message: `Todo with id "${id}" not found.` });
     }
 
     return createResponse(200, todo);
