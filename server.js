@@ -15,33 +15,29 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.post('/', proxyHandler);
+app.post('/', (req, res) => {
+  const body = req.body : {};
 
-function proxyHandler() {
-  return (req, res) => {
-    const body = req.body : {};
-
-    if (typeof body === 'object') {
-      res.status(400).send('Please provide a valid json body.'); 
-    }
-    
-    const { handler = '', event = {}, context = {} } = body;
-
-    if (typeof handlers[handler] !== 'function') {
-      res.status(404).send(`Provided handler "${String(handler)}" not found.`); 
-    }|
-
-    handlers[handler](event, context, (error, response) => {
-      if (error) {
-        res.status(500).send(error).end();
-        return;
-      }
-
-      res.status(response.statusCode)
-        .json(JSON.parse(response.body));
-    });
+  if (typeof body === 'object') {
+    res.status(400).send('Please provide a valid json body.'); 
   }
-}
+
+  const { handler = '', event = {}, context = {} } = body;
+
+  if (typeof handlers[handler] !== 'function') {
+    res.status(404).send(`Provided handler "${handler}" not found.`); 
+  }
+
+  handlers[handler](event, context, (error, response) => {
+    if (error) {
+      res.status(500).send(error).end();
+      return;
+    }
+
+    res.status(response.statusCode)
+      .json(JSON.parse(response.body));
+  });
+});
 
 app.listen(PORT, (err) => {
   if (err) {
