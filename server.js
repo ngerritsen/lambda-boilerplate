@@ -15,16 +15,23 @@ app.use(function (req, res, next) {
   next();
 });
 
-Object.keys(handlers).forEach((handlerKey) => {
-  app.all('/' + handlerKey, proxyHandler(handlerKey));
-});
+app.post('/', proxyHandler);
 
-function proxyHandler(handlerKey) {
+function proxyHandler() {
   return (req, res) => {
-    const body = typeof req.body === 'object' ? req.body : {};
-    const { event = {}, context = {} } = body;
+    const body = req.body : {};
 
-    handlers[handlerKey](event, context, (error, response) => {
+    if (typeof body === 'object') {
+      res.status(400).send('Please provide a valid json body.'); 
+    }
+    
+    const { handler = '', event = {}, context = {} } = body;
+
+    if (typeof handlers[handler] !== 'function') {
+      res.status(404).send(`Provided handler "${String(handler)}" not found.`); 
+    }|
+
+    handlers[handler](event, context, (error, response) => {
       if (error) {
         res.status(500).send(error).end();
         return;
