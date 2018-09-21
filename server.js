@@ -16,9 +16,9 @@ app.use(function (req, res, next) {
 });
 
 app.post('/', (req, res) => {
-  const body = req.body : {};
+  const body = req.body;
 
-  if (typeof body === 'object') {
+  if (typeof body !== 'object') {
     res.status(400).send('Please provide a valid json body.'); 
   }
 
