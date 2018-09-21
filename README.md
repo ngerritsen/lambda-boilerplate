@@ -16,12 +16,13 @@ npm install
 npm run serve
 ```
 
-When using the serve command it will expose all handlers with their name as the url path on any method. So a when having a handler `getTodos` you will be able to do GET, POST, DELETE etc. on `/getTodos`. The request body (if provided) needs to follow this pattern:
+When using the serve command it will expose a POST endpoint on '/' which you can call a lamda handler through by providing the name of the handler in the body.
 
 ```js
 {
-  event: [Object],
-  context: [Object]
+  "handler": "getTodos",
+  "event": {},
+  "context": {}
 }
 ```
 
