@@ -1,0 +1,31 @@
+{
+  "name": "lambda-boilerplate",
+  "version": "1.0.0",
+  "description": "Lambda boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint .",
+    "serve": "nodemon ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngerritsen/lambda-boilerplate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ngerritsen/lambda-boilerplate/issues"
+  },
+  "homepage": "https://github.com/ngerritsen/lambda-boilerplate#readme",
+  "devDependencies": {
+    "body-parser": "^1.18.3",
+    "eslint": "^5.0.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "express": "^4.16.3",
+    "jest": "^23.2.0"
+  },
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
+}
